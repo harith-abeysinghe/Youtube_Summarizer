@@ -1,4 +1,5 @@
 from youtube_transcript_api import YouTubeTranscriptApi, _errors
+from fastapi.middleware.cors import CORSMiddleware
 # # url = "https://www.youtube.com/watch?v=mjsI9e4R1Tc"
 # url = "https://www.youtube.com/watch?v=nF6wuaTg3wo"
 # video_id = url.split("=")[1]
@@ -19,7 +20,15 @@ from fastapi import FastAPI, HTTPException
 # from youtube_transcript_api import YouTubeTranscriptApi, _errors
 
 app = FastAPI()
-
+# Allow cross-origin requests from your frontend (localhost:3000)
+# Add CORS middleware to allow requests from localhost:3000
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Allow requests from this origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 @app.get("/transcript/")
 async def get_transcript(video_id: str, language_codes: str = "en"):
     try:
