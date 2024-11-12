@@ -4,3 +4,12 @@
 	align-items: center; /* Centers vertically */
 	gap: 20px; /* Adds space between the InputField and Button */
 }
+
+.editor-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+	padding: 20px;
+}

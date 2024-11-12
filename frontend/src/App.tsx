@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./App.css";
+
 import Transcription from "./components/Transcription";
 
 function App() {
