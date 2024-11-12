@@ -1,0 +1,23 @@
+:root {
+	--button-color: rgb(0, 157, 255);
+	--button-background-color: white;
+	--button-hover-background-color: rgb(0, 157, 255);
+	--button-hover-color: white;
+}
+
+.button {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: var(--button-color);
+	background-color: var(--button-background-color);
+	border: 2px solid var(--button-color);
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	height: 40px;
+}
+
+.button:hover {
+	background-color: var(--button-hover-background-color);
+	color: var(--button-hover-color);
+}

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import Button from "../ui-components/Button";
+import InputField from "../ui-components/InputField";
 
 const Transcription: React.FC = () => {
-	const [url, setUrl] = useState<string>(""); // Define state as string
+	const [url, setUrl] = useState<string>("");
 	const [transcriptData, setTranscriptData] = useState<string | null>(null);
 
 	const handleFetchTranscript = async () => {
@@ -22,25 +24,14 @@ const Transcription: React.FC = () => {
 	};
 
 	return (
-		<div style={{ padding: "20px", fontFamily: "Arial" }}>
-			<h3>Youtube URL:</h3>
-			<input
-				type="text"
-				value={url}
-				onChange={(e) => setUrl(e.target.value)}
-				placeholder="Enter YouTube URL"
-				style={{ padding: "10px", width: "80%", backgroundColor: "#FFFF88" }}
-			/>
-			<button
-				onClick={handleFetchTranscript}
-				style={{
-					padding: "10px",
-					backgroundColor: "#D3D3D3",
-					marginTop: "10px",
-				}}
-			>
-				Transcript
-			</button>
+		<div
+		// style={ { padding: "20px", fontFamily: "Arial" } }
+		>
+			<div className="center-container">
+				<InputField value={url} onChange={(e) => setUrl(e.target.value)} />
+				<Button onClick={handleFetchTranscript}>Transcript</Button>
+			</div>
+
 			<div
 				style={{
 					backgroundColor: "#90EE90",
