@@ -8,7 +8,9 @@ const Transcription: React.FC = () => {
 	const [transcriptData, setTranscriptData] = useState<string | null>(null);
 
 	const handleFetchTranscript = async () => {
-		const videoId = url.split("v=")[1];
+		const videoId = url.split("v=")[1]; // Extract video ID from URL
+		setTranscriptData(null); // Clear previous transcript data
+
 		try {
 			const response = await fetch(
 				`http://localhost:8000/transcript/?video_id=${videoId}&language_codes=en`
@@ -18,7 +20,7 @@ const Transcription: React.FC = () => {
 			const data = await response.json();
 			setTranscriptData(
 				data.transcript.map((item: { text: string }) => item.text).join(" ")
-			);
+			); // Combine transcript texts
 		} catch (error) {
 			setTranscriptData("This video is not supported or has no transcript.");
 		}

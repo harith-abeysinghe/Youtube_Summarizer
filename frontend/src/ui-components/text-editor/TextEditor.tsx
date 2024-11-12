@@ -23,10 +23,10 @@ const TextEditor: React.FC<TextEditorProps> = ({ value }) => {
 			<Editor
 				value={content}
 				onTextChange={handleContentChange}
-				style={{ height: "200px" }}
+				style={{
+					height: "400px",
+				}}
 			/>
-			<p>Content Output:</p>
-			<div className="output" dangerouslySetInnerHTML={{ __html: content }} />
 		</div>
 	);
 };
