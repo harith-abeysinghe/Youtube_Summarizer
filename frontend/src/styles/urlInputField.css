@@ -1,0 +1,28 @@
+/* Center the container on the page */
+.center-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f9f9f9; /* Light background */
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+/* Style the input field */
+.center-container input {
+	padding: 10px;
+	width: 100%;
+	max-width: 700px; /* Limit input width */
+	box-sizing: border-box;
+	font-size: 1rem;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	outline: none;
+	transition: all 0.3s ease;
+}
+
+/* Change border color and box-shadow on focus */
+.center-container input:focus {
+	border-color: #007bff; /* Blue border on focus */
+	box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); /* Subtle glow effect */
+}

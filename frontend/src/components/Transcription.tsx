@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Button from "../ui-components/Button";
-import InputField from "../ui-components/InputField";
 import TextEditor from "../ui-components/text-editor/TextEditor";
 
-const Transcription: React.FC = () => {
-	const [url, setUrl] = useState<string>("");
-	const [transcriptData, setTranscriptData] = useState<string | null>(null);
+interface TranscriptionProps {
+	url: string;
+}
 
+const Transcription: React.FC<TranscriptionProps> = ({ url }) => {
+	const [transcriptData, setTranscriptData] = useState<string | null>(null);
+	console.log("URL", url);
 	const handleFetchTranscript = async () => {
 		const videoId = url.split("v=")[1]; // Extract video ID from URL
+		console.log(videoId);
 		setTranscriptData(null); // Clear previous transcript data
 
 		try {
@@ -29,8 +32,7 @@ const Transcription: React.FC = () => {
 	return (
 		<div>
 			<div className="center-container">
-				<InputField value={url} onChange={(e) => setUrl(e.target.value)} />
-				<Button onClick={handleFetchTranscript}>Transcript</Button>
+				<Button onClick={handleFetchTranscript}>Fetch Transcript</Button>
 			</div>
 
 			<div className="editor-container">

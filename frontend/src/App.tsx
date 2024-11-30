@@ -1,14 +1,12 @@
-import React from "react";
-
 import "./App.css";
 
-import Transcription from "./components/Transcription";
+import Home from "./pages/Home";
 
 function App() {
 	return (
 		<div className="App">
 			<header className="App-header">
-				<Transcription />
+				<Home />
 			</header>
 		</div>
 	);
