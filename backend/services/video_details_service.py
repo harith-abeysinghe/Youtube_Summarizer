@@ -57,7 +57,7 @@ def fetch_video_details(video_id: str, api_key: str):
         video_details = {
             "title": snippet["title"],
             "thumbnail_url": snippet["thumbnails"]["high"]["url"],
-            "duration": format_duration(content_details["duration"]),  # Convert ISO 8601 to human-readable
+            "duration": format_duration(content_details["duration"])
         }
 
         return video_details
