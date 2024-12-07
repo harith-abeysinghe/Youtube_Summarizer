@@ -3,8 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI, HTTPException
 
-from services.openai_service import process_transcript_with_openai
-# from services.openai_service import process_transcript_with_openai
+from services.cohereAI_service import process_transcript_with_cohere
 from services.transcription_service import fetch_transcript
 from services.video_details_service import fetch_video_details
 import os
@@ -24,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 
 @app.get("/video-details/")
 async def get_video_details(video_id: str):
@@ -42,15 +41,24 @@ async def get_transcript(video_id: str, language_codes: str = "en"):
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
+
 @app.get("/process-transcript/")
-async def process_transcript(video_id: str, language_codes: str = "en", openai_api_key: str = OPENAI_API_KEY):
+async def process_transcript(
+        text: str,
+        prompt: str,
+        cohere_api_key: str = COHERE_API_KEY,
+):
     try:
-        transcript_data = fetch_transcript(video_id, [language_codes])
-        processed_data = process_transcript_with_openai(
-            transcript=transcript_data,
-            prompt="Summarize this transcript in simple terms:",
-            api_key=openai_api_key
+
+        # Process the transcript using Cohere AI
+        processed_data = process_transcript_with_cohere(
+            transcript=text,
+            prompt=prompt,
+            cohere_api_key=cohere_api_key
         )
+
         return {"processed_transcript": processed_data}
+
     except Exception as e:
+        # Handle exceptions and return an appropriate HTTP error
         raise HTTPException(status_code=400, detail=str(e))
